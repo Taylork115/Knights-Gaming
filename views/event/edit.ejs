@@ -1,0 +1,56 @@
+<%- include('../partials/header.ejs')%>
+    
+    <form method = "POST" action = "/events/<%= event.id%>?_method=PUT" class="new-form">
+        <label for="title" >Title</label>
+        <input type="text" id="title" name="title" value = "<%= event.title%>">
+
+        <label for="category">Category</label>
+    <select id="category" name="category">
+        <option value="Casual" <%= event.category === 'Casual' ? 'selected' : '' %>>Casual Event</option>
+        <option value="Competitive" <%= event.category === 'Competitive' ? 'selected' : '' %>>Competitive Event</option>
+    </select>
+        
+        <label for="content">Content</label>
+        <textarea rows="5" id="content" name="content" class = "fixed-width"><%= event.content%></textarea>
+
+        <label for="location">Location</label>
+    <select id="location" name="location" required>
+        <option value="Main Gaming Lounge" <%= event.location === 'Main Gaming Lounge' ? 'selected' : '' %>>Main Gaming Lounge</option>
+        <option value="Room 1" <%= event.location === 'Room 1' ? 'selected' : '' %>>Room 1</option>
+        <option value="Room 2" <%= event.location === 'Room 2' ? 'selected' : '' %>>Room 2</option>
+        <option value="Room 3" <%= event.location === 'Room 3' ? 'selected' : '' %>>Room 3</option>
+    </select>
+
+    <label for="start">Start Date/Time:</label>
+    <input type="datetime-local" id="start" name="start" value="<%= event.start.toISOString().slice(0, 16) %>" required>
+
+    <label for="end">End Date/Time:</label>
+    <input type="datetime-local" id="end" name="end" value="<%= event.end.toISOString().slice(0, 16) %>" required>
+
+    <label>Select Image:</label>
+    <div class="image-options">
+        <input type="radio" id="image1" name="image" value="RocketLeaguelogo.jpg" <%= event.image === 'RocketLeaguelogo.jpg' ? 'checked' : '' %> required>
+        <label for="image1"><img src="/images/RocketLeaguelogo.jpg" alt="Image 1" class="scaled-image"></label>
+
+        <input type="radio" id="image2" name="image" value="CallofDuty.jpg" <%= event.image === 'CallofDuty.jpg' ? 'checked' : '' %> required>
+        <label for="image2"><img src="/images/CallofDuty.jpg" alt="Image 2" class="scaled-image"></label>
+
+        <input type="radio" id="image3" name="image" value="LeagueofLegends.jpg" <%= event.image === 'LeagueofLegends.jpg' ? 'checked' : '' %> required>
+        <label for="image3"><img src="/images/LeagueofLegends.jpg" alt="Image 3" class="scaled-image"></label>
+
+        <input type="radio" id="image4" name="image" value="RainbowSixSiege.jpg" <%= event.image === 'RainbowSixSiege.jpg' ? 'checked' : '' %> required>
+        <label for="image4"><img src="/images/RainbowSixSiege.jpg" alt="Image 4" class="scaled-image"></label>
+
+        <input type="radio" id="image5" name="image" value="SuperSmashBrosUltimate.jpg" <%= event.image === 'SuperSmashBrosUltimate.jpg' ? 'checked' : '' %> required>
+        <label for="image5"><img src="/images/SuperSmashBrosUltimate.jpg" alt="Image 5" class="scaled-image"></label>
+
+        <input type="radio" id="image6" name="image" value="Valorant.jpg" <%= event.image === 'Valorant.jpg' ? 'checked' : '' %> required>
+        <label for="image6"><img src="/images/Valorant.jpg" alt="Image 6" class="scaled-image"></label>
+
+        
+    </div>
+    <input type="submit" value="Submit">
+    </form>
+
+    </div>
+    <%- include('../partials/footer.ejs')%>

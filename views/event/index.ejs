@@ -1,0 +1,11 @@
+<%- include('../partials/header.ejs')%>
+        <%if(events.length) {%>
+            <p>Select an event to view</p>
+            <%events.forEach(event=>{%>
+               <a href = "/events/<%= event.id%>"> <p><%= event.title%></p></a>
+           <% });
+        } else {%>
+            <p>There are no events to display.</p>
+        <%}%>
+    </div>
+    <%- include('../partials/footer.ejs')%>

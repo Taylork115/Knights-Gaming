@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs')%>
+<h4><%= event.title%></h4>
+<small>Posted <%= event.createdAt.toLocaleString()%> by <%= event.host.firstName + ' ' + event.host.lastName%></small><br><br>
+<img src="/images/<%= event.image %>" alt="Event Image" class="bigger-image">   <br><br>
+<strong>Category:</strong><%= event.category%><br>  
+<div id="event">
+    <strong>Start Time:</strong> <%= event.start.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %><br>
+    <strong>End Time:</strong> <%= event.end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %><br>
+    <strong>Details:</strong><%= event.content%><br>      
+    <strong>Where:</strong><%= event.location%><br><br>       
+    <form action="/events/<%= event.id %>/rsvp" method="post">
+      <button type="submit" name="status" value="YES" class = "yes-button">RSVP Yes</button>
+      <button type="submit" name="status" value="NO" class = "no-button">RSVP No</button>
+      <button type="submit" name="status" value="MAYBE" class = "maybe-button">RSVP Maybe</button>
+  </form><br>
+  <p>Total RSVPs: <%= event.rsvps.filter(rsvp => rsvp.status === 'YES').length %></p>
+<% if(user == event.host._id) {%>
+    <form>
+        <button type="submit" formmethod="GET" formaction="/events/<%= event.id%>/edit">Edit</button>
+        <button type="submit" formmethod="POST" formaction="/events/<%= event.id%>?_method=DELETE">Delete</button>
+    </form>
+<% } %>
+</div>
+<%- include('../partials/footer.ejs')%>

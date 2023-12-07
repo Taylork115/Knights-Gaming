@@ -1,0 +1,49 @@
+<%- include('../partials/header.ejs')%>
+<h2>Welcome <%= user.firstName %></h2> <br>
+
+<!-- Display user's RSVPs with event details -->
+<% if (userRsvps.length) { %>
+    <h5>Your RSVPs</h5><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Event</th>
+                <th>Going?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% userRsvps.forEach(rsvp => { %>
+                <tr>
+                    <td><a href='/events/<%= rsvp.event.id %>'><%= rsvp.event.title %></a></td>
+                    <td><%= rsvp.status %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>You have not RSVP'd to any events</p>
+<% } %>
+
+<!-- Display user's RSVPs with "NO" status -->
+<% if (userNoRsvps.length) { %>
+    <h5>Your RSVPs with "NO" status</h5>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Going?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% userNoRsvps.forEach(rsvp => { %>
+                <tr>
+                    <td><a href='/events/<%= rsvp.event.id %>'><%= rsvp.event.title %></a></td>
+                    <td><%= rsvp.status %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } %>
+
+</div>
+<%- include('../partials/footer.ejs')%>
